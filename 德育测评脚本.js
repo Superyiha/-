@@ -3,24 +3,6 @@
 //收藏保留备用
 //2024.9.12
 
-//覆写vbscript,改成js
-//解决了自动填写后无法提交，浏览器适配问题
-
-function queren() {
-  const message =
-    "\n前两项分值应≤20，后四项分值应≤15!确定填写正确吗？\n\n注：正确填写测评表后就不能再修改数据了！\n";
-  const result = confirm(message);
-
-  if (!result) {
-    return;
-  }
-
-  document.getElementById("tijiao").submit();
-}
-document
-  .querySelector('input.button[type="button"]')
-  .setAttribute("onclick", "queren()");
-
 //填分脚本
 //请根据实际情况修改以下内容
 document.getElementsByClassName = function (Name, e, tag) {
@@ -82,3 +64,18 @@ for (var i = 1; i < tableTr.length - 3; ++i) {
     console.log(inputName + ": " + input.value);
   }
 }
+
+
+//覆写vbscript,改成js
+//解决了自动填写后无法提交，浏览器适配问题
+// 定义一个函数来模拟原来的 VBScript 功能
+function queren() {
+    var x = confirm("前两项分值应≤20，后四项分值应≤15!\n\n注：正确填写测评表后就不能再修改数据了！");
+    if (x) {
+        // 提交表单
+        document.querySelector('form').submit(); 
+    }
+}
+
+// 找到并点击提交按钮
+document.querySelector('input[type="button"]').click = queren;
